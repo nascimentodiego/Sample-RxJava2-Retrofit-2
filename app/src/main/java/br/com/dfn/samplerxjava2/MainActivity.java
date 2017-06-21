@@ -1,13 +1,12 @@
 package br.com.dfn.samplerxjava2;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 import br.com.dfn.samplerxjava2.model.PeopleResult;
 import br.com.dfn.samplerxjava2.model.api.observable.GetPeople;
 import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.disposables.Disposable;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -24,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
         mCompositeDisposable = new CompositeDisposable();
 
         mCompositeDisposable.add(getPeople.getObservable()
-                .subscribe(this::handleResponse, this::handleError));
+                .subscribe(this::handleResponse, this::handleError, this::handleComplete));
     }
 
 
@@ -40,5 +39,9 @@ public class MainActivity extends AppCompatActivity {
 
     private void handleResponse(PeopleResult peopleResult) {
         Log.d(TAG, "handleResponse: " + peopleResult.results.toString());
+    }
+
+    private void handleComplete() {
+        Log.d(TAG, "handleComplete");
     }
 }

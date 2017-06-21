@@ -2,6 +2,7 @@ package br.com.dfn.samplerxjava2.model.api;
 
 import br.com.dfn.samplerxjava2.model.Movie;
 import br.com.dfn.samplerxjava2.model.PeopleResult;
+import io.reactivex.Flowable;
 import io.reactivex.Observable;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
@@ -13,7 +14,7 @@ import retrofit2.http.Path;
 public interface StartWarsApi {
 
     @GET("people")
-    Observable<PeopleResult> getPeople();
+    Flowable<PeopleResult> getPeople();
 
     @GET("films/{pathId}")
     Observable<Movie> getMovie(@Path("pathId") String idMovie);
